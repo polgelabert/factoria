@@ -4,8 +4,9 @@ public class C3 implements Command{
 
     Logger log = Logger.getLogger("a");
 
-    public void execute(){
+    public int execute(){
         log.info("Classe C3 executada");
+        return 3;
     }
 
 }
