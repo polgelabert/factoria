@@ -5,6 +5,8 @@ public class main {
 
     {
 
+        Factory.getInstance().getCommand().execute();
+
 
     }
 

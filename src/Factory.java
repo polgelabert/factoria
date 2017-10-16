@@ -9,11 +9,17 @@ public class Factory
 
     public  static Factory getInstance()
     {
-        instance = new Factory();
+        return instance = new Factory();
     }
 
-    public static Factory getCommand(String s)
+    public static C1 getCommand()
     {
+
+        C1 cc;
+        return  cc = new C1();
+
+
+
 
     }
 }
