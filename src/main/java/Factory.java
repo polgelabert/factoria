@@ -15,10 +15,15 @@ class Factory
 
     }
 
+
+    public HashMap getCache(){
+         return cache;
+    }
+
     public  static Factory getInstance()
     {
         return instance = new Factory();
-    }
+    }       //Crea instancia Factory.
 
     public Command getCommand(String s)
     {
@@ -27,7 +32,7 @@ class Factory
         {
             log.info("No estaba guardado el Command en la caché");
             try {
-                Class d = Class.forName(s);
+                Class d = Class.forName(s); //guardamos C1 en class d.
                 cmd = (Command) d.newInstance();
 
                 cache.put(s, cmd);
