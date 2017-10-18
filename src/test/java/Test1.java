@@ -1,3 +1,5 @@
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
@@ -11,16 +13,22 @@ public class Test1 {
 
     Logger log = Logger.getLogger("hola");
 
+    @BeforeClass
+    public static void  InitialSet(){ Factory test = Factory.getInstance(); }
+
+    @AfterClass
+    public static void  afterset(){ Factory test = Factory.getInstance(); }
 
     @Test       // Comprueba que inicialmente la caché está vacía.
     public void CacheSizetest() {
         Factory test = Factory.getInstance();       // Instancia Factory con nombre test.
         int cacheSize = test.cache.size();          // Size de la cache (inicialmente vacía).
         assertEquals(0, cacheSize);        // Assert si está vacía.
+        log.info("La caché está vacía.");
     }
 
 
-    @Test       // Comprueba que getCommand añade a la caché C1.
+    @Test       // Comprueba que getCommand añade a la caché un elemento (supuestamente C1).
     public void Cachetest() {
         Factory test = Factory.getInstance();       // Instancia Factory con nombre test.
         test.getCommand("C1");                   // Se comprueba si la clase C1 está en la cache y se añade posteriormente (ya que no esta).
@@ -35,22 +43,13 @@ public class Test1 {
     public void Cachetest2() {
         Factory test = Factory.getInstance();       // Instancia Factory con nombre test.
         test.getCommand("C1");                   // Se comprueba si la clase C1 está en la cache y se añade posteriormente (ya que no esta).
-        test.getCommand("C2");
+        //test.getCommand("C2");
 
         // Como se convierte un Command a String??
-       // String s = (String) test.cache.get("C2");  // esta linea peta
-       // assertEquals("C2", s);
-
+        boolean bool = test.cache.containsKey("C1");  // true si C1 está en la caché.
+        assertEquals(true, bool);
+        log.info("La clase C1 está en la caché. ");
     }
 
-/*
-    @Test
-    public void testCuaBuida() {
-        Cola c  = new ColaImpl<Integer>(10);
-
-        // assert statements
-        assertEquals("10 x 0 must be 0", 0, c.size(), 0);
-    }
-*/
 
 }

@@ -12,18 +12,10 @@ class Factory
     private Factory()
     {
         cache = new HashMap<>();
-
     }
 
 
-    public HashMap getCache(){
-         return cache;
-    }
-
-    public  static Factory getInstance()
-    {
-        return instance = new Factory();
-    }       //Crea instancia Factory.
+    public  static Factory getInstance() { return instance = new Factory(); }       //Crea instancia Factory.
 
     public Command getCommand(String s)
     {
