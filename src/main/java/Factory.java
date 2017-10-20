@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 
 class Factory
 {
-    private static  Factory instance;
+    private static  Factory instance=null;
     Logger log = Logger.getLogger("hola");
-    HashMap <String, Command> cache;
+    private HashMap <String, Command> cache;
 
     private Factory()
     {
@@ -15,10 +15,14 @@ class Factory
     }
 
 
-    public  static Factory getInstance() { return instance = new Factory(); }       //Crea instancia Factory.
+    public  static Factory getInstance() {
+        if (instance == null) instance = new Factory();
 
-    public Command getCommand(String s)
-    {
+        return instance;
+    }       //Crea instancia Factory.
+
+    public Command getCommand(String s) {
+        log.info ("Se solicita un command "+s);
         Command cmd = cache.get(s);
         if(cmd== null)
         {
@@ -28,6 +32,7 @@ class Factory
                 cmd = (Command) d.newInstance();
 
                 cache.put(s, cmd);
+                log.info("Se guarda en la caché el command " + s);
             }
             catch(Exception e)
             {
@@ -43,6 +48,19 @@ class Factory
 
         return cmd;
 
+
+    }
+
+    public int sizeCache() {
+        return this.cache.size();
+    }
+
+    public boolean hasCommand(String command) {
+        return (this.cache.get(command)!=null);
+    }
+
+    public void reset() {
+        this.instance = null;
 
     }
 }
