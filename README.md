@@ -1,4 +1,4 @@
-<h1> Ejercicio de factoria.
+<h1> Ejercicio de factoria <h1>
 
 Integrantes del grupo:
 
