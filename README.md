@@ -1,6 +1,9 @@
 Integrantes del grupo:
 
-Anna García\n
+Anna García
+
 Joan Valverde
+
 Alex Aguilera
+
 Pol Gelabert
