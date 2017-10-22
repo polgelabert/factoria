@@ -1,17 +1,16 @@
 import org.junit.*;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-import java.util.Scanner;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+
 
 
 public class Test1 {
+
+    final static Logger log = Logger.getLogger(Test1.class.getName());
     Factory test;
-    Logger log = Logger.getLogger("hola");
+
 
     @Before
     public void initialSet(){
@@ -25,7 +24,6 @@ public class Test1 {
 
     @Test       // Comprueba que inicialmente la caché está vacía.
     public void cacheSizetest() {
-              // Instancia Factory con nombre test.
         int cacheSize = test.sizeCache();          // Size de la cache (inicialmente vacía).
         assertEquals(0, cacheSize);        // Assert si está vacía.
         log.info("La caché está vacía.");
@@ -37,7 +35,7 @@ public class Test1 {
 
         assertFalse(test.hasCommand("C1"));
 
-        assertEquals(test.getCommand("C1").execute(),1);                   // Se comprueba si la clase C1 está en la cache y se añade posteriormente (ya que no esta).
+        assertEquals(1, test.getCommand("C1").execute());                   // Se comprueba si la clase C1 está en la cache y se añade posteriormente (ya que no esta).
 
         assertTrue(test.hasCommand("C1"));
         log.info("Se ha guardado la clase C1 en la caché y ahora tiene 1 elemento.");
